@@ -1,0 +1,28 @@
+image_hosting/
+├── src/                      # 源代码目录
+│   └── image_hosting/        # 主包目录
+│       ├── __init__.py
+│       ├── main.py          # 主程序入口
+│       ├── config/          # 配置模块
+│       │   ├── __init__.py
+│       │   └── settings.py  # 配置文件
+│       ├── core/           # 核心功能模块
+│       │   ├── __init__.py
+│       │   └── storage.py  # 存储处理
+│       └── ui/             # UI相关模块
+│           ├── __init__.py
+│           └── app.py      # Gradio UI实现
+├── static/                 # 静态资源
+│   └── uploads/           # 上传文件目录
+├── tests/                 # 测试目录
+│   ├── __init__.py
+│   └── test_storage.py
+├── docs/                  # 文档目录
+│   └── README.md
+├── scripts/              # 部署和管理脚本
+│   └── run.sh
+├── .gitignore
+├── setup.py             # 包安装配置
+├── requirements.txt     # 依赖文件
+├── requirements-dev.txt # 开发依赖
+└── README.md 
