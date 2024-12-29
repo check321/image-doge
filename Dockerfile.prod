@@ -9,12 +9,17 @@ RUN apt-get update && \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# 复制项目文件
-COPY . .
+# 首先只复制 requirements.txt
+COPY requirements.txt .
 
 # 安装依赖
-RUN pip install --no-cache-dir -e . && \
-    pip install --no-cache-dir gradio>=4.19.2
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 复制其余项目文件
+COPY . .
+
+# 安装项目包（如果需要）
+RUN pip install --no-cache-dir -e .
 
 # 最终镜像
 FROM python:3.11-slim
@@ -44,5 +49,8 @@ EXPOSE 7860 8000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:7860/ && curl -f http://localhost:8000/health || exit 1
 
-# 修改启动命令为 main.py
-CMD ["python", "main.py"]
+# 添加调试命令
+RUN ls -la /app
+RUN pwd
+
+CMD ["python", "src/image_hosting/main.py"]

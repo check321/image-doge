@@ -11,6 +11,7 @@ services:
       - "8000:8000"
     volumes:
       - static_data:/app/static/uploads-2
+      - ./.env:/app/.env
     environment:
       - TZ=Asia/Shanghai
       - FASTAPI_HOST=0.0.0.0

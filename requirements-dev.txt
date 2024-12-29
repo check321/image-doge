@@ -3,3 +3,4 @@ black>=22.0.0
 isort>=5.0.0
 flake8>=4.0.0
 mypy>=0.900 
+python-dotenv>=1.0.0
