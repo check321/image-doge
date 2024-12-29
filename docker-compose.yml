@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    ports:
+      - "7860:7860"
+      - "8000:8000"
+    volumes:
+      - static_data:/app/static/uploads-2
+    environment:
+      - TZ=Asia/Shanghai
+      - FASTAPI_HOST=0.0.0.0
+      - FASTAPI_PORT=8000
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+    networks:
+      - app_network
+
+volumes:
+  static_data:
+    driver: local
+
+networks:
+  app_network:
+    driver: bridge 
